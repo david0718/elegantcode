@@ -51,6 +51,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_137A5A9B14B14C71B49E3BCC14F32E51"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4A3E2CB302978F8DC429682C47E31648"
         "OwnerKey" = "8:_6F54570AD24D432791C591AF6B2F8F67"
         "MsmSig" = "8:_UNDEFINED"
@@ -161,6 +167,12 @@
         {
         "MsmKey" = "8:_CD48F955115144A0AF7579CEAEB00B94"
         "OwnerKey" = "8:_B317D667047707B50681F396A11CA781"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DF2B602E60B04BD2BD2887D605A01E87"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -403,6 +415,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_137A5A9B14B14C71B49E3BCC14F32E51"
+            {
+            "SourcePath" = "8:..\\..\\src\\ElegantCode.BeSure.AddIn\\bin\\Release\\ElegantCode.BeSure.AddIn.vsto"
+            "TargetName" = "8:ElegantCode.BeSure.AddIn.vsto"
+            "Tag" = "8:"
+            "Folder" = "8:_515BA27EC44B428F9EE4F5BE64875536"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4A3E2CB302978F8DC429682C47E31648"
             {
             "AssemblyRegister" = "3:1"
@@ -618,6 +650,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DF2B602E60B04BD2BD2887D605A01E87"
+            {
+            "SourcePath" = "8:..\\..\\src\\ElegantCode.BeSure.AddIn\\bin\\Release\\ElegantCode.BeSure.AddIn.dll.manifest"
+            "TargetName" = "8:ElegantCode.BeSure.AddIn.dll.manifest"
+            "Tag" = "8:"
+            "Folder" = "8:_515BA27EC44B428F9EE4F5BE64875536"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F50026E4FDC2F214B7B39B567C116E98"
