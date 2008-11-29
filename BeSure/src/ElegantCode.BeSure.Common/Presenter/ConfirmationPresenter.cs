@@ -11,7 +11,7 @@ namespace ElegantCode.BeSure.Common.Presenter
         {
             InitializeDialog(view, mailItem);
             DialogResult result = view.ShowDialog();
-            return result == DialogResult.No;
+            return result == DialogResult.Yes;
         }
 
         private void InitializeDialog(IConfirmationView view, _MailItem mailItem)
