@@ -16,7 +16,7 @@ namespace ElegantCode.BeSure.Common.Util
 
             foreach (string address in joinedEmails.Split(';'))
             {
-                addresses.Add(address);
+                addresses.Add(address.Trim());
             }
 
             return addresses;
