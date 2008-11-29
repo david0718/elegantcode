@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElegantCode.BeSure.Common",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElegantCode.BeSure.Test", "test\ElegantCode.BeSure.Test\ElegantCode.BeSure.Test.csproj", "{2C2EF8CC-D07E-4DAD-BA53-E338B9E9A16C}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "BeSure.AddIn.Setup", "setup\BeSure.AddIn.Setup\BeSure.AddIn.Setup.vdproj", "{BD98FD01-3D0B-4902-A0D9-C9B9625C4DC2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElegantCode.BeSure.AddIn", "src\ElegantCode.BeSure.AddIn\ElegantCode.BeSure.AddIn.csproj", "{A7E60083-4D90-4BA3-93AF-5D388ADE3D04}"
 EndProject
 Global
@@ -29,8 +27,6 @@ Global
 		{2C2EF8CC-D07E-4DAD-BA53-E338B9E9A16C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C2EF8CC-D07E-4DAD-BA53-E338B9E9A16C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C2EF8CC-D07E-4DAD-BA53-E338B9E9A16C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BD98FD01-3D0B-4902-A0D9-C9B9625C4DC2}.Debug|Any CPU.ActiveCfg = Debug
-		{BD98FD01-3D0B-4902-A0D9-C9B9625C4DC2}.Release|Any CPU.ActiveCfg = Release
 		{A7E60083-4D90-4BA3-93AF-5D388ADE3D04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A7E60083-4D90-4BA3-93AF-5D388ADE3D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7E60083-4D90-4BA3-93AF-5D388ADE3D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
