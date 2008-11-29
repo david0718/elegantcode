@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfirmationView));
             this.label1 = new System.Windows.Forms.Label();
             this._btnSendIt = new System.Windows.Forms.Button();
             this._btnDontSendIt = new System.Windows.Forms.Button();
@@ -38,8 +39,10 @@
             this._lbBcc = new System.Windows.Forms.ListBox();
             this._lbCc = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this._lblNumberOfAttachments = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -47,12 +50,12 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(110, 9);
+            this.label1.Location = new System.Drawing.Point(71, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 31);
+            this.label1.Size = new System.Drawing.Size(120, 31);
             this.label1.TabIndex = 0;
-            this.label1.Text = "From";
+            this.label1.Text = "Account";
             // 
             // _btnSendIt
             // 
@@ -72,7 +75,7 @@
             // _btnDontSendIt
             // 
             this._btnDontSendIt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                                                                               | System.Windows.Forms.AnchorStyles.Right)));
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._btnDontSendIt.BackColor = System.Drawing.Color.Red;
             this._btnDontSendIt.DialogResult = System.Windows.Forms.DialogResult.No;
             this._btnDontSendIt.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -101,7 +104,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Blue;
-            this.label2.Location = new System.Drawing.Point(143, 62);
+            this.label2.Location = new System.Drawing.Point(143, 93);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 31);
             this.label2.TabIndex = 4;
@@ -113,7 +116,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Blue;
-            this.label4.Location = new System.Drawing.Point(116, 331);
+            this.label4.Location = new System.Drawing.Point(116, 362);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(75, 31);
             this.label4.TabIndex = 7;
@@ -123,7 +126,7 @@
             // 
             this._lbTo.FormattingEnabled = true;
             this._lbTo.ItemHeight = 20;
-            this._lbTo.Location = new System.Drawing.Point(197, 62);
+            this._lbTo.Location = new System.Drawing.Point(197, 102);
             this._lbTo.Name = "_lbTo";
             this._lbTo.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this._lbTo.Size = new System.Drawing.Size(584, 124);
@@ -134,7 +137,7 @@
             // 
             this._lbBcc.FormattingEnabled = true;
             this._lbBcc.ItemHeight = 20;
-            this._lbBcc.Location = new System.Drawing.Point(197, 331);
+            this._lbBcc.Location = new System.Drawing.Point(197, 362);
             this._lbBcc.Name = "_lbBcc";
             this._lbBcc.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this._lbBcc.Size = new System.Drawing.Size(584, 64);
@@ -146,7 +149,7 @@
             // 
             this._lbCc.FormattingEnabled = true;
             this._lbCc.ItemHeight = 20;
-            this._lbCc.Location = new System.Drawing.Point(197, 201);
+            this._lbCc.Location = new System.Drawing.Point(197, 232);
             this._lbCc.Name = "_lbCc";
             this._lbCc.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this._lbCc.Size = new System.Drawing.Size(584, 124);
@@ -159,23 +162,21 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Blue;
-            this.label3.Location = new System.Drawing.Point(135, 201);
+            this.label3.Location = new System.Drawing.Point(135, 232);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 31);
             this.label3.TabIndex = 11;
             this.label3.Text = "CC";
             // 
-            // label5
+            // pictureBox1
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Blue;
-            this.label5.Location = new System.Drawing.Point(191, 401);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(177, 31);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Attachments";
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(479, 50);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(300, 28);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
             // 
             // _lblNumberOfAttachments
             // 
@@ -183,21 +184,35 @@
             this._lblNumberOfAttachments.AutoSize = true;
             this._lblNumberOfAttachments.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._lblNumberOfAttachments.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this._lblNumberOfAttachments.Location = new System.Drawing.Point(155, 401);
+            this._lblNumberOfAttachments.Location = new System.Drawing.Point(155, 47);
             this._lblNumberOfAttachments.Name = "_lblNumberOfAttachments";
             this._lblNumberOfAttachments.Size = new System.Drawing.Size(30, 31);
-            this._lblNumberOfAttachments.TabIndex = 14;
+            this._lblNumberOfAttachments.TabIndex = 17;
             this._lblNumberOfAttachments.Text = "0";
             this._lblNumberOfAttachments.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // ConfirmationDialog
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Blue;
+            this.label5.Location = new System.Drawing.Point(191, 47);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(177, 31);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Attachments";
+            // 
+            // ConfirmationView
             // 
             this.AcceptButton = this._btnDontSendIt;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this._btnDontSendIt;
             this.ClientSize = new System.Drawing.Size(794, 574);
             this.ControlBox = false;
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this._lblNumberOfAttachments);
             this.Controls.Add(this.label5);
             this.Controls.Add(this._lbCc);
@@ -214,7 +229,7 @@
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "ConfirmationDialog";
+            this.Name = "ConfirmationView";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -222,6 +237,7 @@
             this.Text = "Confirm This Email";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.ConfirmationForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,7 +255,8 @@
         private System.Windows.Forms.ListBox _lbBcc;
         private System.Windows.Forms.ListBox _lbCc;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label _lblNumberOfAttachments;
+        private System.Windows.Forms.Label label5;
     }
 }
