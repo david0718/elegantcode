@@ -40,8 +40,10 @@ namespace ElegantCode.BeSure.Common.View
 
         #endregion
 
-        private void ConfirmationForm_Load(object sender, EventArgs e)
+        private void ConfirmationDialog_Load(object sender, EventArgs e)
         {
+            this._btnDontSendIt.Focus();
+            this._btnDontSendIt.Select();
         }
 
         private void _lbBccRecipients_SelectedIndexChanged(object sender, EventArgs e)

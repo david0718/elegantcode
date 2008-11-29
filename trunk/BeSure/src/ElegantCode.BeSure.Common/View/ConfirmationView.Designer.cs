@@ -50,7 +50,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(71, 9);
+            this.label1.Location = new System.Drawing.Point(9, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(120, 31);
@@ -68,7 +68,7 @@
             this._btnSendIt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this._btnSendIt.Name = "_btnSendIt";
             this._btnSendIt.Size = new System.Drawing.Size(116, 123);
-            this._btnSendIt.TabIndex = 1;
+            this._btnSendIt.TabIndex = 2;
             this._btnSendIt.Text = "Send It";
             this._btnSendIt.UseVisualStyleBackColor = false;
             // 
@@ -83,7 +83,7 @@
             this._btnDontSendIt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this._btnDontSendIt.Name = "_btnDontSendIt";
             this._btnDontSendIt.Size = new System.Drawing.Size(644, 123);
-            this._btnDontSendIt.TabIndex = 2;
+            this._btnDontSendIt.TabIndex = 1;
             this._btnDontSendIt.Text = "Oops. I Need to Change Something";
             this._btnDontSendIt.UseVisualStyleBackColor = false;
             // 
@@ -92,7 +92,7 @@
             this._lblAccountName.AutoSize = true;
             this._lblAccountName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._lblAccountName.ForeColor = System.Drawing.Color.Red;
-            this._lblAccountName.Location = new System.Drawing.Point(191, 9);
+            this._lblAccountName.Location = new System.Drawing.Point(137, 9);
             this._lblAccountName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._lblAccountName.Name = "_lblAccountName";
             this._lblAccountName.Size = new System.Drawing.Size(204, 31);
@@ -104,7 +104,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Blue;
-            this.label2.Location = new System.Drawing.Point(143, 93);
+            this.label2.Location = new System.Drawing.Point(81, 93);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 31);
             this.label2.TabIndex = 4;
@@ -116,45 +116,48 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Blue;
-            this.label4.Location = new System.Drawing.Point(116, 362);
+            this.label4.Location = new System.Drawing.Point(54, 362);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(75, 31);
-            this.label4.TabIndex = 7;
+            this.label4.TabIndex = 3;
             this.label4.Text = "BCC";
             // 
             // _lbTo
             // 
             this._lbTo.FormattingEnabled = true;
             this._lbTo.ItemHeight = 20;
-            this._lbTo.Location = new System.Drawing.Point(197, 102);
+            this._lbTo.Location = new System.Drawing.Point(143, 102);
             this._lbTo.Name = "_lbTo";
             this._lbTo.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this._lbTo.Size = new System.Drawing.Size(584, 124);
+            this._lbTo.Size = new System.Drawing.Size(638, 124);
             this._lbTo.Sorted = true;
             this._lbTo.TabIndex = 6;
+            this._lbTo.TabStop = false;
             // 
             // _lbBcc
             // 
             this._lbBcc.FormattingEnabled = true;
             this._lbBcc.ItemHeight = 20;
-            this._lbBcc.Location = new System.Drawing.Point(197, 362);
+            this._lbBcc.Location = new System.Drawing.Point(143, 362);
             this._lbBcc.Name = "_lbBcc";
             this._lbBcc.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this._lbBcc.Size = new System.Drawing.Size(584, 64);
+            this._lbBcc.Size = new System.Drawing.Size(638, 64);
             this._lbBcc.Sorted = true;
             this._lbBcc.TabIndex = 10;
+            this._lbBcc.TabStop = false;
             this._lbBcc.SelectedIndexChanged += new System.EventHandler(this._lbBccRecipients_SelectedIndexChanged);
             // 
             // _lbCc
             // 
             this._lbCc.FormattingEnabled = true;
             this._lbCc.ItemHeight = 20;
-            this._lbCc.Location = new System.Drawing.Point(197, 232);
+            this._lbCc.Location = new System.Drawing.Point(143, 232);
             this._lbCc.Name = "_lbCc";
             this._lbCc.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this._lbCc.Size = new System.Drawing.Size(584, 124);
+            this._lbCc.Size = new System.Drawing.Size(638, 124);
             this._lbCc.Sorted = true;
             this._lbCc.TabIndex = 12;
+            this._lbCc.TabStop = false;
             // 
             // label3
             // 
@@ -162,7 +165,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Blue;
-            this.label3.Location = new System.Drawing.Point(135, 232);
+            this.label3.Location = new System.Drawing.Point(73, 232);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 31);
             this.label3.TabIndex = 11;
@@ -184,7 +187,7 @@
             this._lblNumberOfAttachments.AutoSize = true;
             this._lblNumberOfAttachments.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._lblNumberOfAttachments.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this._lblNumberOfAttachments.Location = new System.Drawing.Point(155, 47);
+            this._lblNumberOfAttachments.Location = new System.Drawing.Point(93, 47);
             this._lblNumberOfAttachments.Name = "_lblNumberOfAttachments";
             this._lblNumberOfAttachments.Size = new System.Drawing.Size(30, 31);
             this._lblNumberOfAttachments.TabIndex = 17;
@@ -197,7 +200,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Blue;
-            this.label5.Location = new System.Drawing.Point(191, 47);
+            this.label5.Location = new System.Drawing.Point(137, 47);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(177, 31);
             this.label5.TabIndex = 16;
@@ -236,7 +239,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Confirm This Email";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.ConfirmationForm_Load);
+            this.Load += new System.EventHandler(this.ConfirmationDialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
