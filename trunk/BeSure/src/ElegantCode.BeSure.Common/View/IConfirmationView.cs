@@ -6,6 +6,8 @@ namespace ElegantCode.BeSure.Common.View
     public interface IConfirmationView
     {
         string AccountName { set; }
+        string Subject { set; }
+        string Sender { set; }
 
         List<string> To { set; }
         List<string> CC { set; }

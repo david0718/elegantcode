@@ -15,7 +15,17 @@ namespace ElegantCode.BeSure.Common.View
 
         public string AccountName
         {
-            set { _lblAccountName.Text = value; }
+            set { _tbAccountName.Text = value; }
+        }
+
+        public string Subject
+        {
+            set { this._tbSubject.Text = value; }
+        }
+
+        public string Sender
+        {
+            set { this._tbFrom.Text = value; }
         }
 
         public List<string> To
