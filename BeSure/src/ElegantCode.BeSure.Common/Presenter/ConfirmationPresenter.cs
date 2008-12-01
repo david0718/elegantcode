@@ -9,15 +9,13 @@ namespace ElegantCode.BeSure.Common.Presenter
     {
         public bool SenderWantsToCancel(IConfirmationView view, MailItem mailItem)
         {
-            InitializeDialog(view, mailItem);
+            PopulateDialog(view, mailItem);
             DialogResult result = view.ShowDialog();
             return result == DialogResult.Yes;
         }
 
-        private void InitializeDialog(IConfirmationView view, _MailItem mailItem)
+        private void PopulateDialog(IConfirmationView view, _MailItem mailItem)
         {
-
-            
             view.AccountName = mailItem.SendUsingAccount.DisplayName;
             view.To = AddressSplitter.SplitAddresses(mailItem.To);
             view.CC = AddressSplitter.SplitAddresses(mailItem.CC);
