@@ -16,11 +16,15 @@ namespace ElegantCode.BeSure.Common.Presenter
 
         private void InitializeDialog(IConfirmationView view, _MailItem mailItem)
         {
+
+            
             view.AccountName = mailItem.SendUsingAccount.DisplayName;
             view.To = AddressSplitter.SplitAddresses(mailItem.To);
             view.CC = AddressSplitter.SplitAddresses(mailItem.CC);
             view.BCC = AddressSplitter.SplitAddresses(mailItem.BCC);
             view.NumberOfAttachments = mailItem.Attachments.Count;
+            view.Sender = string.Format("{0} [{1}]", mailItem.SendUsingAccount.UserName, mailItem.SendUsingAccount.SmtpAddress);
+            view.Subject = mailItem.Subject;
         }
     }
 }

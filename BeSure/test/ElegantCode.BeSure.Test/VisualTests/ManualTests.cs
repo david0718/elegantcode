@@ -30,17 +30,19 @@ namespace ElegantCode.BeSure.Test.VisualTests
 
             confirmationDialog.BCC = new List<string>
                                          {
-                                             "Marge",
-                                             "Marge",
-                                             "Marge",
-                                             "Marge",
-                                             "Marge",
-                                             "Marge",
-                                             "Marge",
-                                             "Marge",
-                                             "Marge"
+                                             "Marge1",
+                                             "Marge2",
+                                             "Marge3",
+                                             "Marge4",
+                                             "Marge5",
+                                             "Marge6",
+                                             "Marge7",
+                                             "Marge8",
+                                             "Marge9"
                                          };
 
+            confirmationDialog.Subject = "This is the subject";
+            confirmationDialog.Sender = "me@me.com";
             confirmationDialog.NumberOfAttachments = 5;
 
             DialogResult result = confirmationDialog.ShowDialog();
