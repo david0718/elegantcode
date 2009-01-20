@@ -6,6 +6,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using FubuCart.Core.Web;
 using FubuMVC.Container.StructureMap.Config;
+using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Html.Expressions;
 
 namespace FubuCart.Web
@@ -27,6 +28,7 @@ namespace FubuCart.Web
                  x.ByDefault.EveryControllerAction(d =>
                                                        {
                                                            //Need to setup up some controller behaviors here?
+                                                           d.Will<execute_the_result>();
                                                            //d.Will<Some_Controller_action_or_behavior>();
                                                        });
 
