@@ -8,3 +8,4 @@
          <%= this.RenderPartial().Using<ProductInfo>().ForEachOf(Model.Products) %>
     </div>
 </div>
+</asp:Content>

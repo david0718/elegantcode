@@ -1,5 +1,7 @@
 
+using System;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 [assembly: AssemblyCopyrightAttribute("Copyright 2009 Ryan Kelley, et al. All rights reserved.")]
 [assembly: AssemblyVersionAttribute("0.1.0.0")]
