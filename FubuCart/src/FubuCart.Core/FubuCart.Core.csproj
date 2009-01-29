@@ -48,6 +48,7 @@
       <HintPath>..\..\lib\StructureMap\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -65,14 +66,20 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Config\ConfigExtensions.cs" />
+    <Compile Include="Config\SiteConfigDTO.cs" />
     <Compile Include="Domain\Category.cs" />
     <Compile Include="Domain\DomainEntity.cs" />
     <Compile Include="Domain\Product.cs" />
+    <Compile Include="Domain\SiteConfiguration.cs" />
     <Compile Include="Web\Controllers\HomeController.cs" />
     <Compile Include="Web\DisplayModels\ProductDisplay.cs" />
     <Compile Include="Web\Html\HtmlExtensions.cs" />
     <Compile Include="Web\UrlToExtensions.cs" />
     <Compile Include="Web\ViewModel.cs" />
+    <Compile Include="Web\WebForms\FubuCartMasterPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Web\WebForms\IFubuCartPage.cs">
     </Compile>
     <Compile Include="Web\WebForms\FubuCartUserControl.cs">
