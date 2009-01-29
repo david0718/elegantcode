@@ -10,7 +10,7 @@ namespace FubuCart.Core.Web.DisplayModels
             Description = product.Description;
             Cost = product.Cost;
             Price = product.Price;
-            Category = product.Category;
+            //Category = product.Category;
         }
 
         public string Name { get; set; }
@@ -18,6 +18,6 @@ namespace FubuCart.Core.Web.DisplayModels
         public decimal Cost { get; set; }
         public decimal Price { get; set; }
 
-        public Category Category { get; set; }
+        //public Category Category { get; set; }
     }
 }

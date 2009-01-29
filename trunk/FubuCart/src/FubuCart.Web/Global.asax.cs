@@ -29,6 +29,7 @@ namespace FubuCart.Web
                                                        {
                                                            //Need to setup up some controller behaviors here?
                                                            d.Will<execute_the_result>();
+                                                           //d.Will<load_the_current_principal>();
                                                            //d.Will<Some_Controller_action_or_behavior>();
                                                        });
 

@@ -102,3 +102,9 @@ task :removebin do
     RemoveDirMatchingString('obj')
     
 end
+
+task :sln do
+  Thread.new do
+    system "devenv src/FubuCart.sln"
+  end
+end

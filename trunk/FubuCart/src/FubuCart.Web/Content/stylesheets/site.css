@@ -1,0 +1,81 @@
+﻿/*body
+{
+    font-size:80%;
+    font-family:trebuchet ms, lucida sans, arial, Helvetica, verdana;
+    padding:0 0 1em;
+}*/
+body { background-color:#fff; font-family:'Lucida Sans','Trebuchet MS'; color: #696969; line-height:1.4em; }
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+/* template
+----------------------------------------------------------*/
+#pg { width: 100%; margin: 0 auto; }
+#hd { margin-bottom: 0px; color: #000; padding: 0 0px 0 0; position:relative; }
+#logo { margin-top:10px; height: 80px; }
+#logo a { color: #FFF; text-decoration: none; }
+#bd { background-color: #FFF; }
+#bd:after{display:block;clear:both;visibility:hidden;content:'.';height:0;}
+#content {
+    /*float:left; */
+    width:80%; 
+    /*margin:1.8em 0 .5em;*/
+    margin-left:auto;
+    margin-right:auto;
+    padding:1.4em 0;
+    border-bottom:5px solid #aaaaaa;
+    border-top:none;
+    border-right:none;
+    border-left:none;
+    overflow:hidden;
+}
+
+#main-nav { margin: 0; background-color: #0063be; padding:5px; border-bottom:solid 5px #aaaaaa; }
+#main-nav ul { margin:0; }
+#main-nav li { display: inline; list-style: none; border-left:solid 1px #666666; }
+#main-nav li.first { border-left:none; }
+#main-nav a { font-size: 120%; text-decoration: none; font-weight: bolder; color: #fff; margin: 10px; }
+#main-nav a:hover { color: #FF6600; }
+
+#left-sd { float:left; width:150px; padding:10px; background:#f6f6f6; min-height:500px;}
+#left-sd ul { margin:0; margin-left:5px; }
+#left-sd ul li { list-style:none; }
+#left-sd li h3 { font-size:92.5%; }
+#left-sd li li { font-size:85%; }
+
+#ft { color: #999; padding: 5px 0 0 0; text-align: center; clear:both; overflow:hidden; }
+#ft p { padding: 5px 0; margin: 0; }
+#ft .powered { float:right; text-transform:lowercase; }
+#ft .credits { float:left; }
+#ft .credits a {
+    margin:2px 0 0 5px;
+    display:block;
+    float:left;
+}
+#ft .credits a#famfamfam {
+    background:url(../images/famfamfam.gif) no-repeat 0 0;
+    height:16px;
+    width:0;
+    padding:0 0 0 13px;
+    overflow:hidden;
+    outline:none;
+}
+#ft .credits a:hover#famfamfam {
+    background-position:0 -16px;
+}
+#ft .powered span,
+#ft .powered a {
+    display:block;
+    float:left;
+}
+#ft .powered span { margin: 3px 0 0; }
+#ft .powered a {
+    background:url(../images/FubuMVC_Logo_Small_Double.jpg) no-repeat 0 0;
+    height:20px;
+    width:0;
+    margin:0 .5ex 0 .8ex;
+    padding:0 0 0 155px;
+    overflow:hidden;
+    outline:none;
+}
+#ft .powered a:hover { background-position:0 -20px; }

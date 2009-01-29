@@ -1,17 +1,50 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="FubuCart.Web.Views.Shared.Site" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+﻿<%@ Import Namespace="FubuCart.Core.Web.DisplayModels"%>
+<%@ Import Namespace="FubuCart.Core.Web.Html"%>
+<%@ Master Language="C#" Inherits="SiteMasterView" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
+
 <head runat="server">
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+<%= this.PageTitle("test title") %>
+    <%= this.MetaTag().AsContentType() %>
+    <%= this.MetaTag().Name("language").Content(Model.LanguageDefault) %>
+    <%= this.MetaTag().Name("robots").Content(Model.SEORobots)%>
+    <%= this.MetaTag().Name("description").Content("example description")%>
+    <%= this.MetaTag().Name("keywords").Content(new[] { "keyword1", "keyword2" })%>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+        
+    <%= this.SkinCSS("site.css") %>
+    <!-- //TODO: CSS  Additional skin stylesheets  -->
+    <%= this.SkinScript(new[] { "jquery-1.2.6.js" }).Indent("    ")%>
 </head>
 <body>
-    <div class="page">
-    <p>This is just a test in the site master</p>
-    <div id="main"><asp:ContentPlaceHolder ID="MainContent" runat="server" />        </div>
+    <div id="page">
+        <div id="hdr">
+            <a href="" title="Go to AdventureWorks Home">
+               <img src="/Content/images/FubuCart_Logo_button.png" border="0" />
+            </a>
+        </div>
+        <% //TODO: Not sure what this means. Html.RnderAction<PersonalizationController>(x => x.Summary());%>
+        <div id="main-nav">
+            <ul>
+              <li class="first"><a href="<%=this.UrlTo().Home() %>">Home</a></li>
+            </ul>
+        </div>
+        <div id="bd">
+            <div id="left-sd">
+                <asp:ContentPlaceHolder ID="SideNavContent" runat="server">
+                <% //TODO: GET Categories/Catalog list %>
+                </asp:ContentPlaceHolder>
+            </div>
+            <div id="content"><asp:ContentPlaceHolder ID="MainContent" runat="server" />        
+            
+            </div>
+        </div>
+        
+        <div id="ft">
+            <div class="powered"><span><%= Resources.Strings.POWERED_BY %> </span><a href="http://code.google.com/p/fubumvc/">FubuMVC</a></div>
+            <div class="credits"><a href="http://www.famfamfam.com" title="Icons by Fam Fam Fam" id="famfamfam">famfamfam</a></div>
+        </div> 
     </div>
 </body>
 </html>

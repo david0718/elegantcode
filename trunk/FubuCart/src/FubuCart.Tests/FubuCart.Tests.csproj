@@ -78,7 +78,7 @@
       <Project>{6CE5930F-33B7-4F26-91B5-087375A88E5C}</Project>
       <Name>FubuCart.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CAShop.Web\Fubucart.Web.csproj">
+    <ProjectReference Include="..\FubuCart.Web\Fubucart.Web.csproj">
       <Project>{AC0B98A4-0401-484F-8914-589EEB2025E1}</Project>
       <Name>Fubucart.Web</Name>
     </ProjectReference>
