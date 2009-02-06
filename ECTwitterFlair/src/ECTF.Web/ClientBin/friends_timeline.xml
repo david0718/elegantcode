@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statuses type="array">
+<status>
+  <created_at>Fri Feb 06 00:04:17 +0000 2009</created_at>
+  <id>1181555840</id>
+  <text>Installing Linux in Hyper-V: I needed to run some exploratory testing of a web application using FireFox on a Li.. http://tinyurl.com/dzmxr4</text>
+  <source>&lt;a href=&quot;http://twitterfeed.com&quot;&gt;twitterfeed&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id></in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name></in_reply_to_screen_name>
+  <user>
+    <id>17570048</id>
+    <name>ElegantCode</name>
+    <screen_name>ElegantCode</screen_name>
+    <location>Everywhere</location>
+    <description>Elegant Code Blog</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/65223787/EC_logo_small_normal.png</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>48</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Thu Feb 05 21:35:48 +0000 2009</created_at>
+  <id>1181123387</id>
+  <text>guess im going to have to check out this halo wars thing.  thought i was going to get some work done tonight :)</text>
+  <source>&lt;a href=&quot;http://www.tweetdeck.com/&quot;&gt;TweetDeck&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id></in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name></in_reply_to_screen_name>
+  <user>
+    <id>14184817</id>
+    <name>Tony Rasa</name>
+    <screen_name>trasa</screen_name>
+    <location>Boise, ID</location>
+    <description>Software Developer  &amp; Architect</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/51923903/05-03_zod_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>85</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Thu Feb 05 20:58:41 +0000 2009</created_at>
+  <id>1181008396</id>
+  <text>considering downloading one of the R# 4.5 nightlies although it still looks pretty broken..http://is.gd/g6hm</text>
+  <source>&lt;a href=&quot;http://www.tweetdeck.com/&quot;&gt;TweetDeck&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id></in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name></in_reply_to_screen_name>
+  <user>
+    <id>14184817</id>
+    <name>Tony Rasa</name>
+    <screen_name>trasa</screen_name>
+    <location>Boise, ID</location>
+    <description>Software Developer  &amp; Architect</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/51923903/05-03_zod_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>85</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Thu Feb 05 18:37:48 +0000 2009</created_at>
+  <id>1180572743</id>
+  <text>@trasa No, just a guess. You can't measure current investment as cost of replacement development. Apples/Oranges</text>
+  <source>&lt;a href=&quot;http://www.digsby.com/&quot;&gt;digsby&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id>14184817</in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name>trasa</in_reply_to_screen_name>
+  <user>
+    <id>15013693</id>
+    <name>David Starr</name>
+    <screen_name>ElegantCoder</screen_name>
+    <location>Boise, ID</location>
+    <description>Blissfully Oblivious of Myself</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/60513004/DavidHeadShot_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>135</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Thu Feb 05 18:36:50 +0000 2009</created_at>
+  <id>1180569874</id>
+  <text>Just submitted #agile2009 experience report. Agile Practices at Home: Iterating with Children http://tinyurl.com/bu2cwt  - It works, people.</text>
+  <source>&lt;a href=&quot;http://www.digsby.com/&quot;&gt;digsby&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id></in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name></in_reply_to_screen_name>
+  <user>
+    <id>15013693</id>
+    <name>David Starr</name>
+    <screen_name>ElegantCoder</screen_name>
+    <location>Boise, ID</location>
+    <description>Blissfully Oblivious of Myself</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/60513004/DavidHeadShot_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>135</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Thu Feb 05 18:11:38 +0000 2009</created_at>
+  <id>1180491365</id>
+  <text>@ElegantCoder is the $12.4M from an official number somewhere?  thx!</text>
+  <source>&lt;a href=&quot;http://www.tweetdeck.com/&quot;&gt;TweetDeck&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id>1180486119</in_reply_to_status_id>
+  <in_reply_to_user_id>15013693</in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name>ElegantCoder</in_reply_to_screen_name>
+  <user>
+    <id>14184817</id>
+    <name>Tony Rasa</name>
+    <screen_name>trasa</screen_name>
+    <location>Boise, ID</location>
+    <description>Software Developer  &amp; Architect</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/51923903/05-03_zod_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>85</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Thu Feb 05 18:10:01 +0000 2009</created_at>
+  <id>1180486119</id>
+  <text>@trasa $12.4M, but that assumes relflecting existing functionality. A new IDE with the right features? $1M</text>
+  <source>&lt;a href=&quot;http://www.digsby.com/&quot;&gt;digsby&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id>14184817</in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name>trasa</in_reply_to_screen_name>
+  <user>
+    <id>15013693</id>
+    <name>David Starr</name>
+    <screen_name>ElegantCoder</screen_name>
+    <location>Boise, ID</location>
+    <description>Blissfully Oblivious of Myself</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/60513004/DavidHeadShot_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>135</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Thu Feb 05 18:01:14 +0000 2009</created_at>
+  <id>1180458942</id>
+  <text>anybody want to guess at the project budget for Visual Studio 2008? if you were going to build your own from scratch, how much?</text>
+  <source>&lt;a href="http://www.tweetdeck.com/"&gt;TweetDeck&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id></in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name></in_reply_to_screen_name>
+  <user>
+    <id>14184817</id>
+    <name>Tony Rasa</name>
+    <screen_name>trasa</screen_name>
+    <location>Boise, ID</location>
+    <description>Software Developer  &amp; Architect</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/51923903/05-03_zod_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>86</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Thu Feb 05 17:47:51 +0000 2009</created_at>
+  <id>1180416146</id>
+  <text>by default I mean 'first in list' and yeah I know its alphabetical.  still going to remove it :)</text>
+  <source>&lt;a href="http://www.tweetdeck.com/"&gt;TweetDeck&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id></in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name></in_reply_to_screen_name>
+  <user>
+    <id>14184817</id>
+    <name>Tony Rasa</name>
+    <screen_name>trasa</screen_name>
+    <location>Boise, ID</location>
+    <description>Software Developer  &amp; Architect</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/51923903/05-03_zod_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>86</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Thu Feb 05 17:40:43 +0000 2009</created_at>
+  <id>1180393449</id>
+  <text>I need to remove VB.NET from vs. Why is that the default choice in visual studio?!  The only time I create a vb.net project is by accident.</text>
+  <source>web</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id></in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name></in_reply_to_screen_name>
+  <user>
+    <id>14184817</id>
+    <name>Tony Rasa</name>
+    <screen_name>trasa</screen_name>
+    <location>Boise, ID</location>
+    <description>Software Developer  &amp; Architect</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/51923903/05-03_zod_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>86</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Thu Feb 05 15:21:19 +0000 2009</created_at>
+  <id>1179939263</id>
+  <text>@ElegantCoder I personally would be interested in comparing BDD frameworks. I know a lot of people who think the same.</text>
+  <source>&lt;a href=&quot;http://www.twhirl.org/&quot;&gt;twhirl&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id>15013693</in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name>ElegantCoder</in_reply_to_screen_name>
+  <user>
+    <id>14344284</id>
+    <name>JanVanRyswyck</name>
+    <screen_name>JanVanRyswyck</screen_name>
+    <location>Brecht, Antwerp, Belgium</location>
+    <description>I'm a Senior Software Engineer at SD Worx and I'm an agile ALT.NET fan-boy.</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/56230551/Ikke_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>78</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Thu Feb 05 14:35:28 +0000 2009</created_at>
+  <id>1179801185</id>
+  <text>Good thoughts. Both sessions would start with no knowledge assumed. 1st why do I want this. 2nd is how to without the tool. Then tools.</text>
+  <source>&lt;a href=&quot;http://twitterfon.net/&quot;&gt;TwitterFon&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id></in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name></in_reply_to_screen_name>
+  <user>
+    <id>15013693</id>
+    <name>David Starr</name>
+    <screen_name>ElegantCoder</screen_name>
+    <location>Boise, ID</location>
+    <description>Blissfully Oblivious of Myself</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/60513004/DavidHeadShot_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>133</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Thu Feb 05 13:45:52 +0000 2009</created_at>
+  <id>1179666799</id>
+  <text>What's a better hands on session for #agile2009? Comparing IoCs or comparing BDD libraries? .NET for both.</text>
+  <source>&lt;a href=&quot;http://twitterfon.net/&quot;&gt;TwitterFon&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id></in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name></in_reply_to_screen_name>
+  <user>
+    <id>15013693</id>
+    <name>David Starr</name>
+    <screen_name>ElegantCoder</screen_name>
+    <location>Boise, ID</location>
+    <description>Blissfully Oblivious of Myself</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/60513004/DavidHeadShot_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>133</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Thu Feb 05 07:59:52 +0000 2009</created_at>
+  <id>1179066095</id>
+  <text>LDAPSoft LDAP browser is really cool http://is.gd/islC</text>
+  <source>&lt;a href=&quot;http://www.twhirl.org/&quot;&gt;twhirl&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id></in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name></in_reply_to_screen_name>
+  <user>
+    <id>14344284</id>
+    <name>JanVanRyswyck</name>
+    <screen_name>JanVanRyswyck</screen_name>
+    <location>Brecht, Antwerp, Belgium</location>
+    <description>I'm a Senior Software Engineer at SD Worx and I'm an agile ALT.NET fan-boy.</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/56230551/Ikke_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>78</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Thu Feb 05 06:53:26 +0000 2009</created_at>
+  <id>1178967471</id>
+  <text>Simpson! Homer Simpson! He's the greatest guy in history. From the, Town of Springfield! He's about to hit a chestnut tree! -- classic</text>
+  <source>&lt;a href=&quot;http://www.twhirl.org/&quot;&gt;twhirl&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id></in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name></in_reply_to_screen_name>
+  <user>
+    <id>14344284</id>
+    <name>JanVanRyswyck</name>
+    <screen_name>JanVanRyswyck</screen_name>
+    <location>Brecht, Antwerp, Belgium</location>
+    <description>I'm a Senior Software Engineer at SD Worx and I'm an agile ALT.NET fan-boy.</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/56230551/Ikke_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>78</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Thu Feb 05 02:42:23 +0000 2009</created_at>
+  <id>1178458463</id>
+  <text>@JanVanRyswyck Excellent video. thanks for the tweet</text>
+  <source>&lt;a href="http://www.digsby.com/"&gt;digsby&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id>14344284</in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name>JanVanRyswyck</in_reply_to_screen_name>
+  <user>
+    <id>15013693</id>
+    <name>David Starr</name>
+    <screen_name>ElegantCoder</screen_name>
+    <location>Boise, ID</location>
+    <description>Blissfully Oblivious of Myself</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/60513004/DavidHeadShot_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>134</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Wed Feb 04 22:39:57 +0000 2009</created_at>
+  <id>1177855572</id>
+  <text>Watching State Transitions in Domain-Driven Design and DDD Best Practices http://is.gd/i6DL</text>
+  <source>&lt;a href=&quot;http://www.twhirl.org/&quot;&gt;twhirl&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id></in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name></in_reply_to_screen_name>
+  <user>
+    <id>14344284</id>
+    <name>JanVanRyswyck</name>
+    <screen_name>JanVanRyswyck</screen_name>
+    <location>Brecht, Antwerp, Belgium</location>
+    <description>I'm a Senior Software Engineer at SD Worx and I'm an agile ALT.NET fan-boy.</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/56230551/Ikke_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>78</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Wed Feb 04 22:18:12 +0000 2009</created_at>
+  <id>1177792169</id>
+  <text>Are messages part of the domain? Can they flow to an aggregate root?</text>
+  <source>&lt;a href=&quot;http://www.twhirl.org/&quot;&gt;twhirl&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id></in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name></in_reply_to_screen_name>
+  <user>
+    <id>14344284</id>
+    <name>JanVanRyswyck</name>
+    <screen_name>JanVanRyswyck</screen_name>
+    <location>Brecht, Antwerp, Belgium</location>
+    <description>I'm a Senior Software Engineer at SD Worx and I'm an agile ALT.NET fan-boy.</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/56230551/Ikke_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>78</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Wed Feb 04 22:12:07 +0000 2009</created_at>
+  <id>1177774172</id>
+  <text>Generic covariance would ne nice in C#. Wait, ...    .... , I realize that I have to wait a while longer.</text>
+  <source>&lt;a href=&quot;http://www.twhirl.org/&quot;&gt;twhirl&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id></in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name></in_reply_to_screen_name>
+  <user>
+    <id>14344284</id>
+    <name>JanVanRyswyck</name>
+    <screen_name>JanVanRyswyck</screen_name>
+    <location>Brecht, Antwerp, Belgium</location>
+    <description>I'm a Senior Software Engineer at SD Worx and I'm an agile ALT.NET fan-boy.</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/56230551/Ikke_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>78</followers_count>
+  </user>
+</status>
+<status>
+  <created_at>Wed Feb 04 22:09:55 +0000 2009</created_at>
+  <id>1177767731</id>
+  <text>Why don't I just learn a new language and use that instead of C#?</text>
+  <source>&lt;a href=&quot;http://www.twhirl.org/&quot;&gt;twhirl&lt;/a&gt;</source>
+  <truncated>false</truncated>
+  <in_reply_to_status_id></in_reply_to_status_id>
+  <in_reply_to_user_id></in_reply_to_user_id>
+  <favorited>false</favorited>
+  <in_reply_to_screen_name></in_reply_to_screen_name>
+  <user>
+    <id>14344284</id>
+    <name>JanVanRyswyck</name>
+    <screen_name>JanVanRyswyck</screen_name>
+    <location>Brecht, Antwerp, Belgium</location>
+    <description>I'm a Senior Software Engineer at SD Worx and I'm an agile ALT.NET fan-boy.</description>
+    <profile_image_url>http://s3.amazonaws.com/twitter_production/profile_images/56230551/Ikke_normal.jpg</profile_image_url>
+    <url>http://elegantcode.com</url>
+    <protected>false</protected>
+    <followers_count>78</followers_count>
+  </user>
+</status>
+</statuses>
