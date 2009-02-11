@@ -25,15 +25,16 @@ namespace FubuCart.Core.Domain
         public virtual string ShortDescription { get; set; }
         public virtual decimal Cost { get; set; }
         public virtual decimal Price { get; set; }
-        public virtual decimal DiscountPercent { get; set; }
-        public virtual string ProductCode { get; set; }
+        //public virtual decimal DiscountPercent { get; set; }
+        //public virtual string ProductCode { get; set; }
         public virtual string Manufacturer { get; set; }
-        public virtual DeliveryMethod Delivery { get; set; }
+        //public virtual DeliveryMethod Delivery { get; set; }
         public virtual decimal WeightInPounds { get; set; }
         public virtual bool IsTaxable { get; set; }
         public virtual InventoryStatus Inventory { get; set; }
         public virtual bool AllowBackOrder { get; set; }
         public virtual string EstimatedDelivery { get; set; }
+
         public virtual string DefaultImagePath
         { 
             get
@@ -44,10 +45,10 @@ namespace FubuCart.Core.Domain
 
         }
 
-        public virtual decimal DiscountedPrice
-        {
-            get { return Price * (1.0M - DiscountPercent); } 
-        }
+        //public virtual decimal DiscountedPrice
+        //{
+        //    //get { return Price * (1.0M - DiscountPercent); } 
+        //}
 
         public virtual IList<Category> Categories { get; set; }
         //public virtual IList<ProductReview> Reviews { get; set; }
