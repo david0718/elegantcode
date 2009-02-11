@@ -5,12 +5,11 @@ namespace FubuCart.Core.Domain
     public class Category : DomainEntity
     {
         public virtual string Name { get; set; }
-        public virtual int ParentID { get; set; }
 
         public virtual IList<Category> SubCategories { get; set; }
-        public virtual IList<Product> Products { get; set; }
-
+        
         public virtual CategoryImage Image { get; set; }
+        
         public virtual bool IsDefault { get; set; }
 
         #region object overrides
