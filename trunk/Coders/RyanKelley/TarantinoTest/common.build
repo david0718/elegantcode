@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://nant.sf.net/schemas/nant.xsd">
+
+	<!-- Database change management -->
+	<target name="rebuildDatabase" depends="dropDatabase, createDatabase" />
+
+	<target name="updateDatabase">
+		<property name="action" value="Update" />
+		<call target="manageSqlDatabase" />
+	</target>
+
+	<target name="createDatabase">
+		<property name="action" value="Create" />
+		<call target="manageSqlDatabase" />
+	</target>
+
+	<target name="dropDatabase">
+		<property name="action" value="Drop" />
+		<call target="manageSqlDatabase" failonerror="false"/>
+	</target>
+
+	<target name="manageSqlDatabase">
+		<manageSqlDatabase
+			scriptDirectory="${database.script.directory}"
+			action="${action}"
+			server="${database.server}"
+			integratedAuthentication="${database.integrated}"
+			database="${database.name}"
+      username="${database.username}"
+      password="${database.password}"
+		/>
+
+		<if test="${action != 'Drop'}">
+			<echo message="Current Database Version: ${usdDatabaseVersion}" />
+		</if>
+	</target>
+
+  
+  <script language="C#" prefix="migration" >
+    <references>
+      <include name="System.IO.dll" />
+    </references>
+    <code>
+      <![CDATA[
+              [Function("next-migration-number")]
+              public static string NextMigration(string path  ) {
+                  
+                  string[] files = System.IO.Directory.GetFiles(path);
+                  
+				  int count=1;
+				  
+					if(files.Length > 0)
+					{
+						string filename = System.IO.Path.GetFileName(files[files.Length-1]);
+				  
+						try
+						{
+							count = Convert.ToInt32(filename.Substring(0, 4));
+							count++;
+							
+							if(count%2 == 0)
+								count++;
+						}
+						catch
+						{
+						  
+						}
+					}
+                  return string.Format("{0:0000}", count);
+              }
+            ]]>
+    </code>
+  </script>
+</project>
