@@ -89,19 +89,8 @@ namespace Moq
 
 					public override void PreBuildUp(IBuilderContext context)
 					{
-						bool isToBeAMockedClassInstance = false;
-
-						if (context.BuildKey is NamedTypeBuildKey)
-						{
-							var key = (NamedTypeBuildKey)context.BuildKey;
-							if (key.Name == NameForMocking)
-								isToBeAMockedClassInstance = true;
-						}
-
-						var buildKey = context.BuildKey as IBuildKey;
-						if (buildKey == null)
-							throw new InvalidOperationException("buildKey is null");
-
+						NamedTypeBuildKey buildKey = (NamedTypeBuildKey)context.BuildKey;
+						bool isToBeAMockedClassInstance = buildKey.Name == NameForMocking;
 						Type mockServiceType = buildKey.Type;
 
 						if (!mockServiceType.IsInterface && !isToBeAMockedClassInstance)
@@ -218,9 +207,9 @@ namespace Moq
 		using System.Linq;
 		using System.Reflection;
 
-		public class UnityAutoMockContainerFixture : AutoMockContainerFixture
+		public class UnityAutoMockContainerFixture
 		{
-			protected override AutoMockContainer GetAutoMockContainer(MockFactory factory)
+			protected UnityAutoMockContainer GetAutoMockContainer(MockFactory factory)
 			{
 				return new UnityAutoMockContainer(factory);
 			}
@@ -230,14 +219,8 @@ namespace Moq
 				var fixture = new UnityAutoMockContainerFixture();
 				RunAllTests(fixture, messageWriter);
 			}
-		}
 
-		[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
-		public class TestAttribute : Attribute { }
-
-		public abstract class AutoMockContainerFixture
-		{
-			public static void RunAllTests(AutoMockContainerFixture fixture, Action<string> messageWriter)
+			public static void RunAllTests(UnityAutoMockContainerFixture fixture, Action<string> messageWriter)
 			{
 				messageWriter("Starting Tests...");
 				foreach (var assertion in fixture.GetAllAssertions)
@@ -273,8 +256,6 @@ namespace Moq
 				}
 			}
 
-			protected abstract AutoMockContainer GetAutoMockContainer(MockFactory factory);
-
 			[Test]
 			public void CreatesLooseMocksIfFactoryIsLoose()
 			{
@@ -295,8 +276,6 @@ namespace Moq
 				Assert.IsNotNull(testComponent);
 				Assert.IsFalse(testComponent is IMocked<ITestComponent>);
 			}
-
-
 
 			[Test]
 			public void ResolveUnregisteredInterfaceReturnsMock()
@@ -430,6 +409,9 @@ namespace Moq
 				}
 			}
 		}
+
+		[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
+		public class TestAttribute : Attribute { }
 
 		internal static class Assert
 		{

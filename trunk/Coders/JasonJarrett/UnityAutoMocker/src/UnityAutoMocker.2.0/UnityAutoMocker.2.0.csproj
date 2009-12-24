@@ -45,9 +45,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="..\UnityAutoMocker.1.2\Program.cs">
+      <Link>Program.cs</Link>
+    </Compile>
+    <Compile Include="..\UnityAutoMocker.1.2\UnityAutoMockContainer.cs">
+      <Link>UnityAutoMockContainer.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnityAutoMockContainer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
