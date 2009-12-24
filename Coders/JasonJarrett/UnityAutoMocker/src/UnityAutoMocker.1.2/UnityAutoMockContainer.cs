@@ -1,3 +1,4 @@
+
 namespace Moq
 {
 	namespace AutoMocking
@@ -206,6 +207,7 @@ namespace Moq
 		using System.Diagnostics;
 		using System.Linq;
 		using System.Reflection;
+		using System.Text.RegularExpressions;
 
 		public class UnityAutoMockContainerFixture
 		{
@@ -234,17 +236,26 @@ namespace Moq
 			{
 				get
 				{
+					var tests = new List<Action<Action<string>>>();
+
+					Func<string, string> putSpacesBetweenPascalCasedWords = (s) =>
+						{
+							var r = new Regex("([A-Z]+[a-z]+)");
+							return r.Replace(s, m => (m.Value.Length > 3 ? m.Value : m.Value.ToLower()) + " ");
+						};
+
 					var methodInfos = this
 						.GetType()
 						.GetMethods(BindingFlags.Public | BindingFlags.Instance)
-						.Where(w => w.GetCustomAttributes(typeof(TestAttribute), true).Any());
-					var tests = new List<Action<Action<string>>>();
+						.Where(w => w.GetCustomAttributes(typeof (TestAttribute), true).Any())
+						.OrderBy(ob => ob.Name);
+
 					foreach (var methodInfo in methodInfos)
 					{
 						MethodInfo info = methodInfo;
 						Action<Action<string>> a = messageWriter =>
 									{
-										messageWriter("Testing - " + info.Name);
+										messageWriter("Testing - " + putSpacesBetweenPascalCasedWords(info.Name));
 										info.Invoke(this, new object[0]);
 									};
 
@@ -257,7 +268,7 @@ namespace Moq
 			}
 
 			[Test]
-			public void CreatesLooseMocksIfFactoryIsLoose()
+			public void CreatesLooseMocksIfFactoryIsMockBehaviorLoose()
 			{
 				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
 				var component = factory.Resolve<TestComponent>();
