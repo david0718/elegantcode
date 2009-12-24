@@ -11,7 +11,6 @@ namespace Moq
 		using System.Reflection;
 		using Microsoft.Practices.Unity;
 		using Microsoft.Practices.Unity.ObjectBuilder;
-		using Moq.AutoMocking.Internal;
 
 		public class UnityAutoMockContainer : AutoMockContainer
 		{
@@ -110,7 +109,7 @@ namespace Moq
 		}
 	}
 
-	namespace AutoMocking.Internal
+	namespace AutoMocking
 	{
 
 		public interface IAutoMockerBackingContainer
@@ -165,7 +164,8 @@ namespace Moq
 		using System;
 		using System.Collections.Generic;
 		using System.Diagnostics;
-		using Moq.AutoMocking.Internal;
+		using System.Linq;
+		using System.Reflection;
 
 		public class UnityAutoMockContainerFixture : AutoMockContainerFixture
 		{
@@ -173,36 +173,58 @@ namespace Moq
 			{
 				return new UnityAutoMockContainer(factory);
 			}
+
+			public static void RunAllTests(Action<string> messageWriter)
+			{
+				var fixture = new UnityAutoMockContainerFixture();
+				RunAllTests(fixture, messageWriter);
+			}
 		}
 
+		[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
+		public class TestAttribute : Attribute { }
 
 		public abstract class AutoMockContainerFixture
 		{
 			public static void RunAllTests(AutoMockContainerFixture fixture, Action<string> messageWriter)
 			{
+				messageWriter("Starting Tests...");
 				foreach (var assertion in fixture.GetAllAssertions)
 				{
-					messageWriter("Running Test - " + assertion.Method.Name);
-					assertion();
+					assertion(messageWriter);
 				}
+				messageWriter("Completed Tests...");
 			}
 
-			public IEnumerable<Action> GetAllAssertions
+			public IEnumerable<Action<Action<string>>> GetAllAssertions
 			{
 				get
 				{
-					yield return CreatesLooseMocksIfFactoryIsLoose;
-					yield return CanRegisterImplementationAndResolveIt;
-					yield return ResolveUnregisteredImplementationReturnsMock;
-					yield return DefaultConstructorWorksWithAllTests;
-					yield return ThrowsIfStrictMockWithoutExpectation;
-					yield return StrictWorksWithAllExpectationsMet;
-					yield return RegisteringNonMockInstanceAndTryingToResolveItAsAMockFails;
+					var methodInfos = this
+						.GetType()
+						.GetMethods(BindingFlags.Public | BindingFlags.Instance)
+						.Where(w => w.GetCustomAttributes(typeof(TestAttribute), true).Any());
+					var tests = new List<Action<Action<string>>>();
+					foreach (var methodInfo in methodInfos)
+					{
+						MethodInfo info = methodInfo;
+						Action<Action<string>> a = messageWriter =>
+						{
+							messageWriter("Testing - " + info.Name);
+							info.Invoke(this, new object[0]);
+						};
+
+						tests.Add(a);
+					}
+
+					foreach (var action in tests)
+						yield return action;
 				}
 			}
 
 			protected abstract AutoMockContainer GetAutoMockContainer(MockFactory factory);
 
+			[Test]
 			public void CreatesLooseMocksIfFactoryIsLoose()
 			{
 				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
@@ -211,15 +233,7 @@ namespace Moq
 				component.RunAll();
 			}
 
-			public void RegisteringNonMockInstanceAndTryingToResolveItAsAMockFails()
-			{
-				var container = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
-
-				container.RegisterInstance(new ServiceA());
-
-				Assert.ShouldThrow(typeof(InvalidCastException), () => container.GetMock<ServiceA>());
-			}
-
+			[Test]
 			public void CanRegisterImplementationAndResolveIt()
 			{
 				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
@@ -233,7 +247,8 @@ namespace Moq
 
 
 
-			public void ResolveUnregisteredImplementationReturnsMock()
+			[Test]
+			public void ResolveUnregisteredInterfaceReturnsMock()
 			{
 				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
 
@@ -243,6 +258,7 @@ namespace Moq
 				Assert.IsTrue(service is IMocked<IServiceA>);
 			}
 
+			[Test]
 			public void DefaultConstructorWorksWithAllTests()
 			{
 				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
@@ -261,6 +277,7 @@ namespace Moq
 			}
 
 
+			[Test]
 			public void ThrowsIfStrictMockWithoutExpectation()
 			{
 				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Strict));
@@ -272,6 +289,7 @@ namespace Moq
 			}
 
 
+			[Test]
 			public void StrictWorksWithAllExpectationsMet()
 			{
 				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Strict));
@@ -282,6 +300,24 @@ namespace Moq
 				component.RunAll();
 			}
 
+			[Test]
+			public void GetMockedInstanceOfConcreteClass()
+			{
+				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
+				var mockedInstance = factory.GetMock<TestComponent>();
+
+				Assert.IsNotNull(mockedInstance);
+				Assert.IsNotNull(mockedInstance.Object.ServiceA);
+				Assert.IsNotNull(mockedInstance.Object.ServiceB);
+			}
+
+			[Test]
+			public void GetMockedInstanceOfConcreteClassWithInterfaceConstructorParameter()
+			{
+				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
+				var mockedInstance = factory.GetMock<TestComponent>();
+				Assert.IsNotNull(mockedInstance);
+			}
 
 			public interface IServiceA
 			{
@@ -301,12 +337,12 @@ namespace Moq
 
 				public ServiceA(int count)
 				{
-					this.Count = count;
+					Count = count;
 				}
 
 				public ServiceA(IServiceB b)
 				{
-					this.ServiceB = b;
+					ServiceB = b;
 				}
 
 				public IServiceB ServiceB { get; private set; }
@@ -329,8 +365,8 @@ namespace Moq
 			{
 				public TestComponent(IServiceA serviceA, IServiceB serviceB)
 				{
-					this.ServiceA = serviceA;
-					this.ServiceB = serviceB;
+					ServiceA = serviceA;
+					ServiceB = serviceB;
 				}
 
 				public IServiceA ServiceA { get; private set; }
@@ -338,12 +374,11 @@ namespace Moq
 
 				public void RunAll()
 				{
-					this.ServiceA.RunA();
-					this.ServiceB.RunB();
+					ServiceA.RunA();
+					ServiceB.RunB();
 				}
 			}
 		}
-
 
 		internal static class Assert
 		{
@@ -371,7 +406,7 @@ namespace Moq
 			{
 				Exception exception = GetException(method);
 
-				Assert.IsNotNull(exception, string.Format("Exception of type[{0}] was not thrown.", exceptionType.FullName));
+				IsNotNull(exception, string.Format("Exception of type[{0}] was not thrown.", exceptionType.FullName));
 				Debug.Assert(exceptionType == exception.GetType());
 			}
 
@@ -392,6 +427,5 @@ namespace Moq
 				return exception;
 			}
 		}
-
 	}
 }

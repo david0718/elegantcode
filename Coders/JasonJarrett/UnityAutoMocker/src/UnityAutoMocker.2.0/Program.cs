@@ -9,10 +9,7 @@ namespace UnityAutoMockerConsole
 		{
 			try
 			{
-				Console.WriteLine("Starting Tests...");
-				var fixture = new UnityAutoMockContainerFixture();
-				AutoMockContainerFixture.RunAllTests(fixture, Console.WriteLine);
-				Console.WriteLine("Test Complete Tests...");
+				UnityAutoMockContainerFixture.RunAllTests(Console.WriteLine);
 			}
 			catch (Exception exception)
 			{
