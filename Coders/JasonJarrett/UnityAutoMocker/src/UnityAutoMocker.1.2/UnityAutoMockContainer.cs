@@ -1,3 +1,4 @@
+using System;
 
 namespace Moq
 {
@@ -10,10 +11,10 @@ namespace Moq
 		using Microsoft.Practices.ObjectBuilder2;
 		using Microsoft.Practices.Unity;
 		using Microsoft.Practices.Unity.ObjectBuilder;
-		using Moq.AutoMocking.Internal;
 
 		public class UnityAutoMockContainer : AutoMockContainer
 		{
+			public const string NameForMocking = "____FOR____MOCKING____";
 			public UnityAutoMockContainer(MockFactory factory)
 				: base(new UnityAutoMockerBackingContainer(factory))
 			{
@@ -25,7 +26,7 @@ namespace Moq
 
 				public UnityAutoMockerBackingContainer(MockFactory factory)
 				{
-					_unityContainer.AddExtension(new MockFactoryContainerExtension(factory));
+					_unityContainer.AddExtension(new MockFactoryContainerExtension(factory, this));
 				}
 
 				public void RegisterInstance<TService>(TService instance)
@@ -44,43 +45,69 @@ namespace Moq
 					return _unityContainer.Resolve<T>();
 				}
 
+				public object Resolve(Type type)
+				{
+					return _unityContainer.Resolve(type);
+				}
+
+				public IMocked<T> ResolveForMocking<T>()
+					where T : class
+				{
+					return (IMocked<T>)_unityContainer.Resolve<T>(NameForMocking);
+				}
+
 				private class MockFactoryContainerExtension : UnityContainerExtension
 				{
 					private readonly MockFactory _mockFactory;
+					private readonly IAutoMockerBackingContainer _container;
 
-					public MockFactoryContainerExtension(MockFactory mockFactory)
+					public MockFactoryContainerExtension(MockFactory mockFactory, IAutoMockerBackingContainer container)
 					{
 						_mockFactory = mockFactory;
+						_container = container;
 					}
 
 					protected override void Initialize()
 					{
-						Context.Strategies.Add(new MockExtensibilityStrategy(_mockFactory), UnityBuildStage.PreCreation);
+						Context.Strategies.Add(new MockExtensibilityStrategy(_mockFactory, _container), UnityBuildStage.PreCreation);
 					}
 				}
 
 				private class MockExtensibilityStrategy : BuilderStrategy
 				{
 					private readonly MockFactory _factory;
+					private readonly IAutoMockerBackingContainer _container;
 					private readonly MethodInfo _createMethod;
 					private readonly Dictionary<Type, Mock> _alreadyCreatedMocks = new Dictionary<Type, Mock>();
+					private MethodInfo _createMethodWithParameters;
 
-					public MockExtensibilityStrategy(MockFactory factory)
+					public MockExtensibilityStrategy(MockFactory factory, IAutoMockerBackingContainer container)
 					{
 						_factory = factory;
+						_container = container;
 						_createMethod = factory.GetType().GetMethod("Create", new Type[] { });
 						Debug.Assert(_createMethod != null);
 					}
 
 					public override void PreBuildUp(IBuilderContext context)
 					{
+						bool isToBeAMockedClassInstance = false;
+
+						if (context.BuildKey is NamedTypeBuildKey)
+						{
+							var key = (NamedTypeBuildKey)context.BuildKey;
+							if (key.Name == NameForMocking)
+								isToBeAMockedClassInstance = true;
+						}
+
+
 						var buildKey = context.BuildKey as IBuildKey;
 						if (buildKey == null)
 							throw new InvalidOperationException("buildKey is null");
 
 						Type mockServiceType = buildKey.Type;
 
-						if (!mockServiceType.IsInterface)
+						if (!mockServiceType.IsInterface && !isToBeAMockedClassInstance)
 						{
 							base.PreBuildUp(context);
 						}
@@ -94,21 +121,48 @@ namespace Moq
 							}
 							else
 							{
-								var specificCreateMethod = _createMethod.MakeGenericMethod(new[] { mockServiceType });
-								mockedObject = (Mock)specificCreateMethod.Invoke(_factory, null);
+								if (isToBeAMockedClassInstance && !mockServiceType.IsInterface)
+								{
+									object[] mockedParametersToInject = GetConstructorParameters(context).ToArray();
+
+									_createMethodWithParameters = _factory.GetType().GetMethod("Create", new[] { typeof(object[]) });
+
+									MethodInfo specificCreateMethod = _createMethodWithParameters.MakeGenericMethod(new[] { mockServiceType });
+
+									var x = specificCreateMethod.Invoke(_factory, new object[] { mockedParametersToInject });
+									mockedObject = (Mock)x;
+								}
+								else
+								{
+									MethodInfo specificCreateMethod = _createMethod.MakeGenericMethod(new[] { mockServiceType });
+									mockedObject = (Mock)specificCreateMethod.Invoke(_factory, null);
+								}
+
 								_alreadyCreatedMocks.Add(mockServiceType, mockedObject);
 							}
+
 
 							context.Existing = mockedObject.Object;
 							context.BuildComplete = true;
 						}
+					}
+
+					private List<object> GetConstructorParameters(IBuilderContext context)
+					{
+						var parameters = new List<object>();
+						var policy = new DefaultUnityConstructorSelectorPolicy();
+						var constructor = policy.SelectConstructor(context).Constructor;
+						foreach (ParameterInfo parameterInfo in constructor.GetParameters())
+							parameters.Add(_container.Resolve(parameterInfo.ParameterType));
+
+						return parameters;
 					}
 				}
 			}
 		}
 	}
 
-	namespace AutoMocking.Internal
+	namespace AutoMocking
 	{
 
 		public interface IAutoMockerBackingContainer
@@ -116,6 +170,8 @@ namespace Moq
 			void RegisterInstance<TService>(TService instance);
 			void RegisterType<TService, TImplementation>() where TImplementation : TService;
 			T Resolve<T>();
+			object Resolve(Type type);
+			IMocked<T> ResolveForMocking<T>() where T : class;
 		}
 
 		public abstract class AutoMockContainer
@@ -135,8 +191,7 @@ namespace Moq
 			public Mock<T> GetMock<T>()
 					where T : class
 			{
-				var obj = (IMocked<T>)Resolve<T>();
-				return obj.Mock;
+				return _container.ResolveForMocking<T>().Mock;
 			}
 
 			public void RegisterInstance<TService>(TService instance)
@@ -163,13 +218,18 @@ namespace Moq
 		using System;
 		using System.Collections.Generic;
 		using System.Diagnostics;
-		using Moq.AutoMocking.Internal;
 
 		public class UnityAutoMockContainerFixture : AutoMockContainerFixture
 		{
 			protected override AutoMockContainer GetAutoMockContainer(MockFactory factory)
 			{
 				return new UnityAutoMockContainer(factory);
+			}
+
+			public static void RunAllTests(Action<string> messageWriter)
+			{
+				var fixture = new UnityAutoMockContainerFixture();
+				RunAllTests(fixture, messageWriter);
 			}
 		}
 
@@ -180,7 +240,7 @@ namespace Moq
 			{
 				foreach (var assertion in fixture.GetAllAssertions)
 				{
-					messageWriter("Running Test - " + assertion.Method.Name);
+					messageWriter("Running AutoMockContainerFixture Test - " + assertion.Method.Name);
 					assertion();
 				}
 			}
@@ -191,11 +251,12 @@ namespace Moq
 				{
 					yield return CreatesLooseMocksIfFactoryIsLoose;
 					yield return CanRegisterImplementationAndResolveIt;
-					yield return ResolveUnregisteredImplementationReturnsMock;
 					yield return DefaultConstructorWorksWithAllTests;
 					yield return ThrowsIfStrictMockWithoutExpectation;
 					yield return StrictWorksWithAllExpectationsMet;
-					yield return RegisteringNonMockInstanceAndTryingToResolveItAsAMockFails;
+					yield return ResolveUnregisteredInterfaceReturnsMock;
+					yield return GetMockedInstanceOfConcreteClass;
+					yield return GetMockedInstanceOfConcreteClassWithInterfaceConstructorParameter;
 				}
 			}
 
@@ -207,15 +268,6 @@ namespace Moq
 				var component = factory.Resolve<TestComponent>();
 
 				component.RunAll();
-			}
-
-			public void RegisteringNonMockInstanceAndTryingToResolveItAsAMockFails()
-			{
-				var container = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
-
-				container.RegisterInstance(new ServiceA());
-
-				Assert.ShouldThrow(typeof(InvalidCastException), () => container.GetMock<ServiceA>());
 			}
 
 			public void CanRegisterImplementationAndResolveIt()
@@ -231,7 +283,7 @@ namespace Moq
 
 
 
-			public void ResolveUnregisteredImplementationReturnsMock()
+			public void ResolveUnregisteredInterfaceReturnsMock()
 			{
 				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
 
@@ -280,6 +332,22 @@ namespace Moq
 				component.RunAll();
 			}
 
+			public void GetMockedInstanceOfConcreteClass()
+			{
+				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
+				var mockedInstance = factory.GetMock<TestComponent>();
+
+				Assert.IsNotNull(mockedInstance);
+				Assert.IsNotNull(mockedInstance.Object.ServiceA);
+				Assert.IsNotNull(mockedInstance.Object.ServiceB);
+			}
+
+			public void GetMockedInstanceOfConcreteClassWithInterfaceConstructorParameter()
+			{
+				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
+				var mockedInstance = factory.GetMock<TestComponent>();
+				Assert.IsNotNull(mockedInstance);
+			}
 
 			public interface IServiceA
 			{
@@ -299,12 +367,12 @@ namespace Moq
 
 				public ServiceA(int count)
 				{
-					this.Count = count;
+					Count = count;
 				}
 
 				public ServiceA(IServiceB b)
 				{
-					this.ServiceB = b;
+					ServiceB = b;
 				}
 
 				public IServiceB ServiceB { get; private set; }
@@ -327,8 +395,8 @@ namespace Moq
 			{
 				public TestComponent(IServiceA serviceA, IServiceB serviceB)
 				{
-					this.ServiceA = serviceA;
-					this.ServiceB = serviceB;
+					ServiceA = serviceA;
+					ServiceB = serviceB;
 				}
 
 				public IServiceA ServiceA { get; private set; }
@@ -336,8 +404,8 @@ namespace Moq
 
 				public void RunAll()
 				{
-					this.ServiceA.RunA();
-					this.ServiceB.RunB();
+					ServiceA.RunA();
+					ServiceB.RunB();
 				}
 			}
 		}
@@ -369,7 +437,7 @@ namespace Moq
 			{
 				Exception exception = GetException(method);
 
-				Assert.IsNotNull(exception, string.Format("Exception of type[{0}] was not thrown.", exceptionType.FullName));
+				IsNotNull(exception, string.Format("Exception of type[{0}] was not thrown.", exceptionType.FullName));
 				Debug.Assert(exceptionType == exception.GetType());
 			}
 
