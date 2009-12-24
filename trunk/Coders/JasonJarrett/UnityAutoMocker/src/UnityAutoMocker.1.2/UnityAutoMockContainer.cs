@@ -1,5 +1,3 @@
-using System;
-
 namespace Moq
 {
 	namespace AutoMocking
@@ -100,7 +98,6 @@ namespace Moq
 								isToBeAMockedClassInstance = true;
 						}
 
-
 						var buildKey = context.BuildKey as IBuildKey;
 						if (buildKey == null)
 							throw new InvalidOperationException("buildKey is null");
@@ -164,6 +161,7 @@ namespace Moq
 
 	namespace AutoMocking
 	{
+		using System;
 
 		public interface IAutoMockerBackingContainer
 		{
@@ -209,7 +207,6 @@ namespace Moq
 			{
 				return _container.Resolve<T>();
 			}
-
 		}
 	}
 
@@ -218,6 +215,8 @@ namespace Moq
 		using System;
 		using System.Collections.Generic;
 		using System.Diagnostics;
+		using System.Linq;
+		using System.Reflection;
 
 		public class UnityAutoMockContainerFixture : AutoMockContainerFixture
 		{
@@ -233,35 +232,50 @@ namespace Moq
 			}
 		}
 
+		[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
+		public class TestAttribute : Attribute { }
 
 		public abstract class AutoMockContainerFixture
 		{
 			public static void RunAllTests(AutoMockContainerFixture fixture, Action<string> messageWriter)
 			{
+				messageWriter("Starting Tests...");
 				foreach (var assertion in fixture.GetAllAssertions)
 				{
-					messageWriter("Running AutoMockContainerFixture Test - " + assertion.Method.Name);
-					assertion();
+					assertion(messageWriter);
 				}
+				messageWriter("Completed Tests...");
 			}
 
-			public IEnumerable<Action> GetAllAssertions
+			public IEnumerable<Action<Action<string>>> GetAllAssertions
 			{
 				get
 				{
-					yield return CreatesLooseMocksIfFactoryIsLoose;
-					yield return CanRegisterImplementationAndResolveIt;
-					yield return DefaultConstructorWorksWithAllTests;
-					yield return ThrowsIfStrictMockWithoutExpectation;
-					yield return StrictWorksWithAllExpectationsMet;
-					yield return ResolveUnregisteredInterfaceReturnsMock;
-					yield return GetMockedInstanceOfConcreteClass;
-					yield return GetMockedInstanceOfConcreteClassWithInterfaceConstructorParameter;
+					var methodInfos = this
+						.GetType()
+						.GetMethods(BindingFlags.Public | BindingFlags.Instance)
+						.Where(w => w.GetCustomAttributes(typeof(TestAttribute), true).Any());
+					var tests = new List<Action<Action<string>>>();
+					foreach (var methodInfo in methodInfos)
+					{
+						MethodInfo info = methodInfo;
+						Action<Action<string>> a = messageWriter =>
+									{
+										messageWriter("Testing - " + info.Name);
+										info.Invoke(this, new object[0]);
+									};
+
+						tests.Add(a);
+					}
+
+					foreach (var action in tests)
+						yield return action;
 				}
 			}
 
 			protected abstract AutoMockContainer GetAutoMockContainer(MockFactory factory);
 
+			[Test]
 			public void CreatesLooseMocksIfFactoryIsLoose()
 			{
 				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
@@ -270,6 +284,7 @@ namespace Moq
 				component.RunAll();
 			}
 
+			[Test]
 			public void CanRegisterImplementationAndResolveIt()
 			{
 				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
@@ -283,6 +298,7 @@ namespace Moq
 
 
 
+			[Test]
 			public void ResolveUnregisteredInterfaceReturnsMock()
 			{
 				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
@@ -293,6 +309,7 @@ namespace Moq
 				Assert.IsTrue(service is IMocked<IServiceA>);
 			}
 
+			[Test]
 			public void DefaultConstructorWorksWithAllTests()
 			{
 				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
@@ -311,6 +328,7 @@ namespace Moq
 			}
 
 
+			[Test]
 			public void ThrowsIfStrictMockWithoutExpectation()
 			{
 				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Strict));
@@ -322,6 +340,7 @@ namespace Moq
 			}
 
 
+			[Test]
 			public void StrictWorksWithAllExpectationsMet()
 			{
 				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Strict));
@@ -332,6 +351,7 @@ namespace Moq
 				component.RunAll();
 			}
 
+			[Test]
 			public void GetMockedInstanceOfConcreteClass()
 			{
 				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
@@ -342,6 +362,7 @@ namespace Moq
 				Assert.IsNotNull(mockedInstance.Object.ServiceB);
 			}
 
+			[Test]
 			public void GetMockedInstanceOfConcreteClassWithInterfaceConstructorParameter()
 			{
 				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
@@ -410,7 +431,6 @@ namespace Moq
 			}
 		}
 
-
 		internal static class Assert
 		{
 			public static void IsNotNull(object component)
@@ -458,6 +478,5 @@ namespace Moq
 				return exception;
 			}
 		}
-
 	}
 }
