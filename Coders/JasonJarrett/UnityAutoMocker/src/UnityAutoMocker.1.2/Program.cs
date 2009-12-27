@@ -1,5 +1,5 @@
 ﻿using System;
-using Moq.AutoMocking.Testing;
+using Moq.AutoMocking.SelfTesting;
 
 namespace UnityAutoMockerConsole
 {
