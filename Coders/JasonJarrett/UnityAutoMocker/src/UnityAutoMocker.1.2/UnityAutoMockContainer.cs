@@ -11,34 +11,77 @@ namespace Moq
 		using Microsoft.Practices.Unity;
 		using Microsoft.Practices.Unity.ObjectBuilder;
 
+		/// <summary>
+		/// AutoMocking container that leverages the Unity IOC container and the Moq 
+		/// mocking library to automatically mock classes resolved from the container.
+		/// </summary>
 		public class UnityAutoMockContainer
 		{
-			public const string NameForMocking = "____FOR____MOCKING____57ebd55f-9831-40c7-9a24-b7d450209ad0";
+			/// <summary>
+			/// Value used when the internal Unity plugin needs to decide if an instance 
+			/// class is to be created as a Mock(of T) or not.
+			/// </summary>
+			internal const string NameForMocking = "____FOR____MOCKING____57ebd55f-9831-40c7-9a24-b7d450209ad0";
+
 			private readonly IAutoMockerBackingContainer _container;
 
+			/// <summary>
+			/// Same as calling <code>new UnityAutoMockContainer(new MockFactory(MockBehavior.Loose))</code>
+			/// </summary>
+			public UnityAutoMockContainer()
+				: this(new MockFactory(MockBehavior.Loose))
+			{
+			}
+
+			/// <summary>
+			/// Allows you to specify the MockFactory that will be used when creating mocked items.
+			/// </summary>
 			public UnityAutoMockContainer(MockFactory factory)
 			{
 				_container = new UnityAutoMockerBackingContainer(factory);
 			}
 
 			#region Public interface
+
+			/// <summary>
+			/// This will create a Mock(of T) for any Interface or Class requested.
+			/// </summary>
+			/// <remarks>Note: that the Mock returned will live as a Singleton, so if you setup any expectations on the Mock(of T) then they will life for the lifetime of this container.</remarks>
+			/// <typeparam name="T">Interface or Class that to create a Mock(of T) for.</typeparam>
+			/// <returns>Mocked instance of the type T.</returns>
 			public Mock<T> GetMock<T>()
 					where T : class
 			{
 				return _container.ResolveForMocking<T>().Mock;
 			}
 
+			/// <summary>
+			/// This is just a pass through to the underlying Unity Container. It will
+			/// register the instance with the ContainerControlledLifetimeManager (Singleton)
+			/// </summary>
 			public void RegisterInstance<TService>(TService instance)
 			{
 				_container.RegisterInstance(instance);
 			}
 
+			/// <summary>
+			/// This is just a pass through to the underlying Unity Container. It will
+			/// register the type with the ContainerControlledLifetimeManager (Singleton)
+			/// </summary>
 			public void Register<TService, TImplementation>()
 				where TImplementation : TService
 			{
 				_container.RegisterType<TService, TImplementation>();
 			}
 
+			/// <summary>
+			/// This will resolve an interface or class from the underlying container.
+			/// </summary>
+			/// <remarks>
+			/// 1. If T is an interface it will return the Mock(of T).Object instance
+			/// 2. If T is a class it will just return that class
+			///     - unless the class was first created by using the GetMock(of T) in which case it will return a Mocked instance of the class
+			/// </remarks>
 			public T Resolve<T>()
 			{
 				return _container.Resolve<T>();
@@ -364,9 +407,17 @@ namespace Moq
 				var mockedInstance = factory.GetMock<TestComponent>();
 
 				var resolvedInstance = factory.Resolve<TestComponent>();
-				Console.WriteLine(typeof(Microsoft.Practices.Unity.UnityContainer).Assembly.FullName);
 
 				Assert.IsTrue(Object.ReferenceEquals(resolvedInstance, mockedInstance.Object));
+			}
+
+			//[Test]
+			// NOT SUPPORTED YET...
+			public void ShouldBeAbleToGetMockedInstanceOfAbstractClass()
+			{
+				var factory = new UnityAutoMockContainer();
+				var mock = factory.GetMock<AbstractTestComponent>();
+				Assert.IsNotNull(mock);
 			}
 
 			public interface IServiceA
@@ -409,6 +460,22 @@ namespace Moq
 				void RunAll();
 				IServiceA ServiceA { get; }
 				IServiceB ServiceB { get; }
+			}
+
+			public abstract class AbstractTestComponent
+			{
+				private readonly IServiceA _serviceA;
+				private readonly IServiceB _serviceB;
+
+				protected AbstractTestComponent(IServiceA serviceA, IServiceB serviceB)
+				{
+					_serviceA = serviceA;
+					_serviceB = serviceB;
+				}
+
+				public abstract void RunAll();
+				public IServiceA ServiceA { get { return _serviceA; } }
+				public IServiceB ServiceB { get { return _serviceB; } }
 			}
 
 			public class TestComponent : ITestComponent
