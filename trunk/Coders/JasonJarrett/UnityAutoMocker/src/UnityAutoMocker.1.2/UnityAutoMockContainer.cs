@@ -11,12 +11,47 @@ namespace Moq
 		using Microsoft.Practices.Unity;
 		using Microsoft.Practices.Unity.ObjectBuilder;
 
-		public class UnityAutoMockContainer : AutoMockContainer
+		public class UnityAutoMockContainer
 		{
-			public const string NameForMocking = "____FOR____MOCKING____";
+			public const string NameForMocking = "____FOR____MOCKING____57ebd55f-9831-40c7-9a24-b7d450209ad0";
+			private readonly IAutoMockerBackingContainer _container;
+
 			public UnityAutoMockContainer(MockFactory factory)
-				: base(new UnityAutoMockerBackingContainer(factory))
 			{
+				_container = new UnityAutoMockerBackingContainer(factory);
+			}
+
+			#region Public interface
+			public Mock<T> GetMock<T>()
+					where T : class
+			{
+				return _container.ResolveForMocking<T>().Mock;
+			}
+
+			public void RegisterInstance<TService>(TService instance)
+			{
+				_container.RegisterInstance(instance);
+			}
+
+			public void Register<TService, TImplementation>()
+				where TImplementation : TService
+			{
+				_container.RegisterType<TService, TImplementation>();
+			}
+
+			public T Resolve<T>()
+			{
+				return _container.Resolve<T>();
+			}
+			#endregion
+
+			interface IAutoMockerBackingContainer
+			{
+				void RegisterInstance<TService>(TService instance);
+				void RegisterType<TService, TImplementation>() where TImplementation : TService;
+				T Resolve<T>();
+				object Resolve(Type type);
+				IMocked<T> ResolveForMocking<T>() where T : class;
 			}
 
 			private class UnityAutoMockerBackingContainer : IAutoMockerBackingContainer
@@ -96,7 +131,15 @@ namespace Moq
 
 						if (!mockServiceType.IsInterface && !isToBeAMockedClassInstance)
 						{
-							base.PreBuildUp(context);
+							if (_alreadyCreatedMocks.ContainsKey(mockServiceType))
+							{
+								var mockedObject = _alreadyCreatedMocks[mockServiceType];
+								SetBuildObjectAndCompleteIt(context, mockedObject);
+							}
+							else
+							{
+								base.PreBuildUp(context);
+							}
 						}
 						else
 						{
@@ -129,9 +172,14 @@ namespace Moq
 							}
 
 
-							context.Existing = mockedObject.Object;
-							context.BuildComplete = true;
+							SetBuildObjectAndCompleteIt(context, mockedObject);
 						}
+					}
+
+					private static void SetBuildObjectAndCompleteIt(IBuilderContext context, Mock mockedObject)
+					{
+						context.Existing = mockedObject.Object;
+						context.BuildComplete = true;
 					}
 
 					private List<object> GetConstructorParameters(IBuilderContext context)
@@ -149,58 +197,7 @@ namespace Moq
 		}
 	}
 
-	namespace AutoMocking
-	{
-		using System;
-
-		public interface IAutoMockerBackingContainer
-		{
-			void RegisterInstance<TService>(TService instance);
-			void RegisterType<TService, TImplementation>() where TImplementation : TService;
-			T Resolve<T>();
-			object Resolve(Type type);
-			IMocked<T> ResolveForMocking<T>() where T : class;
-		}
-
-		public abstract class AutoMockContainer
-		{
-
-			private readonly IAutoMockerBackingContainer _container;
-
-			/// <summary>
-			/// Initializes the container with the <see cref="MockFactory"/> that
-			/// will be used to create dependent mocks.
-			/// </summary>
-			protected AutoMockContainer(IAutoMockerBackingContainer container)
-			{
-				_container = container;
-			}
-
-			public Mock<T> GetMock<T>()
-					where T : class
-			{
-				return _container.ResolveForMocking<T>().Mock;
-			}
-
-			public void RegisterInstance<TService>(TService instance)
-			{
-				_container.RegisterInstance(instance);
-			}
-
-			public void Register<TService, TImplementation>()
-				where TImplementation : TService
-			{
-				_container.RegisterType<TService, TImplementation>();
-			}
-
-			public T Resolve<T>()
-			{
-				return _container.Resolve<T>();
-			}
-		}
-	}
-
-	namespace AutoMocking.Testing
+	namespace AutoMocking.SelfTesting
 	{
 		using System;
 		using System.Collections.Generic;
@@ -247,7 +244,7 @@ namespace Moq
 					var methodInfos = this
 						.GetType()
 						.GetMethods(BindingFlags.Public | BindingFlags.Instance)
-						.Where(w => w.GetCustomAttributes(typeof (TestAttribute), true).Any())
+						.Where(w => w.GetCustomAttributes(typeof(TestAttribute), true).Any())
 						.OrderBy(ob => ob.Name);
 
 					foreach (var methodInfo in methodInfos)
@@ -358,6 +355,18 @@ namespace Moq
 				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
 				var mockedInstance = factory.GetMock<TestComponent>();
 				Assert.IsNotNull(mockedInstance);
+			}
+
+			[Test]
+			public void WhenMockedInstanceIsRetrievedAnyFutureResolvesOfTheSameConcreteClassShouldReturnedTheMockedInstance()
+			{
+				var factory = GetAutoMockContainer(new MockFactory(MockBehavior.Loose));
+				var mockedInstance = factory.GetMock<TestComponent>();
+
+				var resolvedInstance = factory.Resolve<TestComponent>();
+				Console.WriteLine(typeof(Microsoft.Practices.Unity.UnityContainer).Assembly.FullName);
+
+				Assert.IsTrue(Object.ReferenceEquals(resolvedInstance, mockedInstance.Object));
 			}
 
 			public interface IServiceA
