@@ -6,6 +6,7 @@ namespace Moq
 		using System;
 		using System.Collections.Generic;
 		using System.Diagnostics;
+		using System.Linq;
 		using System.Reflection;
 		using Microsoft.Practices.ObjectBuilder2;
 		using Microsoft.Practices.Unity;
@@ -229,8 +230,28 @@ namespace Moq
 					{
 						var parameters = new List<object>();
 						var policy = new DefaultUnityConstructorSelectorPolicy();
-						var constructor = policy.SelectConstructor(context).Constructor;
-						foreach (ParameterInfo parameterInfo in constructor.GetParameters())
+						var constructor = policy.SelectConstructor(context);
+						ConstructorInfo constructorInfo;
+						if (constructor == null)
+						{
+							// Unit constructor selector doesn't seem to want to find abstract class protected constructors
+							// quickly find one here...
+							var buildKey = (NamedTypeBuildKey)context.BuildKey;
+							var largestConstructor = buildKey.Type.GetConstructors(
+																					BindingFlags.Public |
+																					BindingFlags.NonPublic |
+																					BindingFlags.Instance)
+								.OrderByDescending(o => o.GetParameters().Length)
+								.FirstOrDefault();
+
+							constructorInfo = largestConstructor;
+						}
+						else
+						{
+							constructorInfo = constructor.Constructor;
+						}
+
+						foreach (var parameterInfo in constructorInfo.GetParameters())
 							parameters.Add(_container.Resolve(parameterInfo.ParameterType));
 
 						return parameters;
@@ -411,8 +432,7 @@ namespace Moq
 				Assert.IsTrue(Object.ReferenceEquals(resolvedInstance, mockedInstance.Object));
 			}
 
-			//[Test]
-			// NOT SUPPORTED YET...
+			[Test]
 			public void ShouldBeAbleToGetMockedInstanceOfAbstractClass()
 			{
 				var factory = new UnityAutoMockContainer();
