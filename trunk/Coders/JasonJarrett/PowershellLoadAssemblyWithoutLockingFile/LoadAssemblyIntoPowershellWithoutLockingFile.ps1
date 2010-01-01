@@ -1,11 +1,9 @@
 $file = ".\Moq.dll"
 $tempFileName = ".\Moq-Renamed.dll"
 
-$fileStream = ([System.IO.FileInfo] (Get-Item $file)).OpenRead();
-$assemblyBytes = new-object byte[] $fileStream.Length
-$fileStream.Read($assemblyBytes, 0, $fileStream.Length);
-$fileStream.Close();
+$assemblyBytes = [System.IO.File]::ReadAllBytes($file)
 
+#TODO: what to do if assembly depends on something else that isn't loaded?
 $assemblyLoaded = [System.Reflection.Assembly]::Load($assemblyBytes);
 
 # notice that we can move the file on disk after 
