@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityAutoMocker.1.2", "Unit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityAutoMocker.2.0", "UnityAutoMocker.2.0\UnityAutoMocker.2.0.csproj", "{75D68B5B-B607-4F23-AAB1-EBCF275FB619}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityAutoMocker.Examples", "UnityAutoMocker.Examples\UnityAutoMocker.Examples.csproj", "{638F264F-8F71-4270-836C-B81F10D55B8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{75D68B5B-B607-4F23-AAB1-EBCF275FB619}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75D68B5B-B607-4F23-AAB1-EBCF275FB619}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75D68B5B-B607-4F23-AAB1-EBCF275FB619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{638F264F-8F71-4270-836C-B81F10D55B8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{638F264F-8F71-4270-836C-B81F10D55B8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{638F264F-8F71-4270-836C-B81F10D55B8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{638F264F-8F71-4270-836C-B81F10D55B8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

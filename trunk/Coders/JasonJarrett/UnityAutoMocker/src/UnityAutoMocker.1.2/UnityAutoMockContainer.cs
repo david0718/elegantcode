@@ -45,6 +45,27 @@ namespace Moq
 			#region Public interface
 
 			/// <summary>
+			/// This is just a pass through to the underlying Unity Container. It will
+			/// register the instance with the ContainerControlledLifetimeManager (Singleton)
+			/// </summary>
+			public UnityAutoMockContainer RegisterInstance<TService>(TService instance)
+			{
+				_container.RegisterInstance(instance);
+				return this;
+			}
+
+			/// <summary>
+			/// This is just a pass through to the underlying Unity Container. It will
+			/// register the type with the ContainerControlledLifetimeManager (Singleton)
+			/// </summary>
+			public UnityAutoMockContainer Register<TService, TImplementation>()
+				where TImplementation : TService
+			{
+				_container.RegisterType<TService, TImplementation>();
+				return this;
+			}
+
+			/// <summary>
 			/// This will create a Mock(of T) for any Interface or Class requested.
 			/// </summary>
 			/// <remarks>Note: that the Mock returned will live as a Singleton, so if you setup any expectations on the Mock(of T) then they will life for the lifetime of this container.</remarks>
@@ -54,25 +75,6 @@ namespace Moq
 					where T : class
 			{
 				return _container.ResolveForMocking<T>().Mock;
-			}
-
-			/// <summary>
-			/// This is just a pass through to the underlying Unity Container. It will
-			/// register the instance with the ContainerControlledLifetimeManager (Singleton)
-			/// </summary>
-			public void RegisterInstance<TService>(TService instance)
-			{
-				_container.RegisterInstance(instance);
-			}
-
-			/// <summary>
-			/// This is just a pass through to the underlying Unity Container. It will
-			/// register the type with the ContainerControlledLifetimeManager (Singleton)
-			/// </summary>
-			public void Register<TService, TImplementation>()
-				where TImplementation : TService
-			{
-				_container.RegisterType<TService, TImplementation>();
 			}
 
 			/// <summary>
