@@ -54,7 +54,7 @@ function TeamCity-TestFinished([string]$name) { Write-Output "##teamcity[testFin
 function TeamCity-TestIgnored([string]$name, [string]$message='') { Write-Output "##teamcity[testIgnored name='$name' message='$message']" }
 function TeamCity-BeginTestOutput([string]$name, [string]$output) { Write-Output "##teamcity[testStdOut name='$name' out='" }
 function TeamCity-EndTestOutput([string]$name, [string]$output) { Write-Output "']" }
-function TeamCity-TestError([string]$name, [string]$output) { Write-Output "##teamcity[testStdErr name='$name' out='$output']" }
+function TeamCity-TestError([string]$name, [string]$output) { Write-Output "##teamcity[testFailed name='$name'  message='$output']" }
 
 <#
 Other potential references?
@@ -114,7 +114,7 @@ foreach($featureBranchDirectory in $allFeatureBranchDirectoriesFound)
 		}
 		catch
 		{
-			TeamCity-TestError $relativeFullname $error[0]
+			TeamCity-TestError $relativeFullname "Error[0]=$error[0], ErrorMessage=[$errorMessage]"
 		}
 		Pop-Location
 	}
