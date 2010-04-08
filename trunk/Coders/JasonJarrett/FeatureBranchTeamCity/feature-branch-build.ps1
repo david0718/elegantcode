@@ -27,9 +27,18 @@
  # 
  #>
 
+ $i = 0
+foreach($a in $args)
+{
+	echo "### DEBUG - args[$i]=$a"
+	$i = $i + 1
+}
+
+ 
+ 
 $branchSignificantFile = '*ClassLibrary1.sln'
 $taskToExecuteOnEachFeatureBranch = {
-		&'C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe' ClassLibrary1.sln
+		& 'C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe' ClassLibrary1.sln
 }
 
 
@@ -97,9 +106,10 @@ foreach($featureBranchDirectory in $allFeatureBranchDirectoriesFound)
 			TeamCity-BeginTestOutput $relativeFullname
 			& $taskToExecuteOnEachFeatureBranch
 			TeamCity-EndTestOutput
-			if($lastexitcode -ne 0)
+
+			if ($lastexitcode -ne 0)
 			{
-				TeamCity-TestError $relativeFullname "Feature build task failed for $relativeFullname. Check the std out"
+				 throw $errorMessage
 			}
 		}
 		catch
